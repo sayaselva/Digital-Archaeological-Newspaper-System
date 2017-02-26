@@ -7,7 +7,7 @@ package digital.archeological.newspaper.system;
 
 /**
  *
- * @author john
+ * @author Sayanthini
  */
 public class DigitalArcheologicalNewspaperSystem {
 
