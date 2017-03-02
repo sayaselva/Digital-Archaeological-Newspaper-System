@@ -1,5 +1,6 @@
 package digital.gui;
 
+import digital.OCR.ImageUpload;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -17,14 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class MainGUI extends javax.swing.JFrame {
 
-   
+   private final ImageUpload image = new ImageUpload();
     BufferedImage imge = null;
-//    private Mat EnhancedMatImg = null;
-//    Enhancement image1 = new Enhancement();
-//    private ArrayList<Mat> imgSet;
-//    private ArrayList<Mat> verticalimgSet;
-//    int i = 0;
-//    FEextract f1 = new FEextract();
 
     public MainGUI() throws IOException {
         initComponents();
@@ -252,7 +247,15 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-        // TODO add your handling code here:
+           File img = image.uploadImage(MainGUI.this);
+        System.out.println("img " + img);
+
+        try {
+            imge = ImageIO.read(img);
+        } catch (IOException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        lblimage.setIcon(new ImageIcon(imge));
         
     }//GEN-LAST:event_jMenu3MouseClicked
 
