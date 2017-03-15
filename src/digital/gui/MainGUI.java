@@ -1,6 +1,10 @@
 package digital.gui;
 
+//import digital.OCR.FEextract;
+import digital.OCR.FEextract;
 import digital.OCR.ImageUpload;
+import digital.segmentation.Enhancement;
+import digital.segmentation.SpaceSegment;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -10,7 +14,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
+import org.opencv.core.Mat;
 
 /**
  *
@@ -18,8 +22,14 @@ import javax.swing.JOptionPane;
  */
 public class MainGUI extends javax.swing.JFrame {
 
-   private final ImageUpload image = new ImageUpload();
+    private final ImageUpload image = new ImageUpload();
     BufferedImage imge = null;
+    private Mat EnhancedMatImg = null;
+    Enhancement image1 = new Enhancement();
+    private ArrayList<Mat> imgSet;
+    private ArrayList<Mat> verticalimgSet;
+    int i = 0;
+   FEextract f1 = new FEextract();
 
     public MainGUI() throws IOException {
         initComponents();
@@ -32,6 +42,7 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollBar1 = new javax.swing.JScrollBar();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         imgScrlPane = new javax.swing.JLabel();
@@ -247,7 +258,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-           File img = image.uploadImage(MainGUI.this);
+        File img = image.uploadImage(MainGUI.this);
         System.out.println("img " + img);
 
         try {
@@ -256,32 +267,41 @@ public class MainGUI extends javax.swing.JFrame {
             Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         lblimage.setIcon(new ImageIcon(imge));
-        
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         // TODO add your handling code here:
-      
+        System.out.println("Segment button clicked");
+        EnhancedMatImg = image1.enhancedImage(imge);
+        System.out.println("Image enhancement");
+        System.out.println("output" + EnhancedMatImg);
+        SpaceSegment histo = new SpaceSegment();
+        imgSet = histo.horizontalSpaceSeg(EnhancedMatImg,imge);
+        
+        imgScrlPane.setIcon(new ImageIcon(f1.matToBuffered(imgSet.get(0))));
+
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // TODO add your handling code here:
 
-       
+
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void verticalPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verticalPreviousActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_verticalPreviousActionPerformed
 
     private void verticalNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verticalNextActionPerformed
         // TODO add your handling code here:
-        
+
+
     }//GEN-LAST:event_verticalNextActionPerformed
 
+
     private void getArticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getArticalActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_getArticalActionPerformed
 
 
@@ -299,6 +319,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblimage;
