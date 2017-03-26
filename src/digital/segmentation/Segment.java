@@ -43,7 +43,7 @@ public class Segment {
         // define a threshold value, in order to identify whether a verticle white line exists
         int threshold_col = row / 4;
 
-     // identify whether a horizontal white line is exits....
+        // identify whether a horizontal white line is exits....
         //count width of white line
         //If (counting width of white line > original_width of image/2)...set as horizontal white line else not.
         for (int r = 0; r < row; r++) {
@@ -65,7 +65,7 @@ public class Segment {
             System.out.println(i + " " + horizontal_line[i]);
         }
 
-    // identify whether a verticle white line is exits....
+        // identify whether a verticle white line is exits....
         //count height of white line
         //If (counting height of white line > original_height of image/4)...set as verticle white line else not.
         for (int c = 0; c < col; c++) {
@@ -151,7 +151,7 @@ public class Segment {
         double HcurrentPixel = 0;
         int HHeight = 0;
         int count = 0;
-       //for(int r=index1;r<row;r++){
+        //for(int r=index1;r<row;r++){
         //for(int c=index2;c<col;c++){
         for (int i = index2; i < col; i++) {
             HcurrentPixel = verticle_line[i];
@@ -194,7 +194,7 @@ public class Segment {
         Imgproc.resize(article, resiz_article, new Size(600, 200));
 
         Imshow im = new Imshow("Segment1");
-        im.showImage(resiz_article);
+       // im.showImage(resiz_article);
 
         // declare a mat structure to copy the 1st segment from input image
         Mat article1 = new Mat(row - index3, index4 - index2, CvType.CV_8UC1);
@@ -212,7 +212,6 @@ public class Segment {
         Imgproc.resize(article1, resiz_article1, new Size(600, 200));
 
         Imshow im1 = new Imshow("Segment2");
-        im1.showImage(resiz_article1);
 
     }
 

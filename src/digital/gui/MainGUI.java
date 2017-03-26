@@ -13,7 +13,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import org.opencv.core.Mat;
 
 /**
@@ -29,7 +32,7 @@ public class MainGUI extends javax.swing.JFrame {
     private ArrayList<Mat> imgSet;
     private ArrayList<Mat> verticalimgSet;
     int i = 0;
-   FEextract f1 = new FEextract();
+    FEextract f1 = new FEextract();
 
     public MainGUI() throws IOException {
         initComponents();
@@ -57,11 +60,19 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         verticalPrevious = new javax.swing.JButton();
         verticalNext = new javax.swing.JButton();
+        medianfilterbutton = new javax.swing.JButton();
+        binarybutton = new javax.swing.JButton();
+        histogrambutton = new javax.swing.JButton();
+        grayscalebutton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        UpdatedImage = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,8 +119,8 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
-                .addComponent(btnPrevious)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addComponent(getArtical)
                 .addGap(51, 51, 51)
@@ -163,38 +174,98 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(verticalNext)))
         );
 
+        medianfilterbutton.setText("median filter");
+        medianfilterbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medianfilterbuttonActionPerformed(evt);
+            }
+        });
+
+        binarybutton.setLabel("binary");
+        binarybutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                binarybuttonActionPerformed(evt);
+            }
+        });
+
+        histogrambutton.setLabel("histogram");
+        histogrambutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                histogrambuttonActionPerformed(evt);
+            }
+        });
+
+        grayscalebutton.setText("gray scale");
+        grayscalebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grayscalebuttonActionPerformed(evt);
+            }
+        });
+
+        UpdatedImage.setBorder(javax.swing.BorderFactory.createTitledBorder("Original"));
+        jScrollPane4.setViewportView(UpdatedImage);
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(verticalSegmentScroll)
+                .addGap(83, 83, 83)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(79, 79, 79)))
+                        .addComponent(grayscalebutton)
+                        .addGap(68, 68, 68)
+                        .addComponent(medianfilterbutton)
+                        .addGap(60, 60, 60)
+                        .addComponent(binarybutton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(histogrambutton))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(verticalSegmentScroll)
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, Short.MAX_VALUE)
+                                .addGap(79, 79, 79))))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 475, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(55, 55, 55)))
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
                         .addComponent(verticalSegmentScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(grayscalebutton)
+                            .addComponent(medianfilterbutton)
+                            .addComponent(binarybutton)
+                            .addComponent(histogrambutton))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -202,6 +273,11 @@ public class MainGUI extends javax.swing.JFrame {
         jDesktopPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(verticalSegmentScroll, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(medianfilterbutton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(binarybutton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(histogrambutton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(grayscalebutton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -225,6 +301,22 @@ public class MainGUI extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu4);
 
+        jMenu6.setText("Features");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("Summarized");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu7);
+
         jMenu5.setText("Search");
         jMenuBar1.add(jMenu5);
 
@@ -234,16 +326,19 @@ public class MainGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1087, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 27, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setSize(new java.awt.Dimension(1103, 589));
+        setSize(new java.awt.Dimension(1103, 616));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -251,11 +346,6 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formAncestorResized
 
-
-    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         File img = image.uploadImage(MainGUI.this);
@@ -270,45 +360,82 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-        // TODO add your handling code here:
+
         System.out.println("Segment button clicked");
         EnhancedMatImg = image1.enhancedImage(imge);
         System.out.println("Image enhancement");
         System.out.println("output" + EnhancedMatImg);
         SpaceSegment histo = new SpaceSegment();
-        imgSet = histo.horizontalSpaceSeg(EnhancedMatImg,imge);
-        
+        imgSet = histo.horizontalSpaceSeg(EnhancedMatImg, imge);
+
         imgScrlPane.setIcon(new ImageIcon(f1.matToBuffered(imgSet.get(0))));
 
     }//GEN-LAST:event_jMenu4MouseClicked
 
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+    private void grayscalebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grayscalebuttonActionPerformed
+
+       // ImageIcon f2 = new ImageIcon("gray.jpg");
+        UpdatedImage.setIcon(new ImageIcon("gray.jpg"));
+
+    }//GEN-LAST:event_grayscalebuttonActionPerformed
+
+    private void medianfilterbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medianfilterbuttonActionPerformed
         // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_btnNextActionPerformed
-
-    private void verticalPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verticalPreviousActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_verticalPreviousActionPerformed
+        UpdatedImage.setIcon(new ImageIcon("MedianFiltered.jpg"));
+    }//GEN-LAST:event_medianfilterbuttonActionPerformed
 
     private void verticalNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verticalNextActionPerformed
         // TODO add your handling code here:
-
-
     }//GEN-LAST:event_verticalNextActionPerformed
 
+    private void verticalPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verticalPreviousActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_verticalPreviousActionPerformed
 
     private void getArticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getArticalActionPerformed
 
     }//GEN-LAST:event_getArticalActionPerformed
 
 
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPreviousActionPerformed
+
+    private void binarybuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_binarybuttonActionPerformed
+        // TODO add your handling code here:
+        UpdatedImage.setIcon(new ImageIcon("Binary.jpg"));
+    }//GEN-LAST:event_binarybuttonActionPerformed
+
+    private void histogrambuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histogrambuttonActionPerformed
+        // TODO add your handling code here:
+        //UpdatedImage.setIcon(new ImageIcon("MedianFiltered.jpg"));
+    }//GEN-LAST:event_histogrambuttonActionPerformed
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        // TODO add your handling code here:
+        HeadLine_Extraction obj = new HeadLine_Extraction();
+        obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        obj.setVisible(true);
+    }//GEN-LAST:event_jMenu6MouseClicked
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jMenu7MouseClicked
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel UpdatedImage;
+    private javax.swing.JButton binarybutton;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrevious;
     private javax.swing.JButton getArtical;
+    private javax.swing.JButton grayscalebutton;
+    private javax.swing.JButton histogrambutton;
     private javax.swing.JLabel imgScrlPane;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
@@ -316,13 +443,17 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblimage;
+    private javax.swing.JButton medianfilterbutton;
     private javax.swing.JButton verticalNext;
     private javax.swing.JLabel verticalPane;
     private javax.swing.JButton verticalPrevious;

@@ -16,7 +16,6 @@ import net.sourceforge.tess4j.TesseractException;
  */
 public class ImageUpload {
 
-   
     private File selFile;
 
     public File uploadImage(MainGUI obj) {
@@ -29,18 +28,36 @@ public class ImageUpload {
         jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         jfc.showOpenDialog(obj);
         selFile = jfc.getSelectedFile();
-        
+
         System.out.println("selected file " + selFile);
         BufferedImage img = null;
         try {
             img = ImageIO.read(selFile);
 
         } catch (IOException e) {
-           // e.printStackTrace();
+
         }
         return selFile;
     }
 
+    public String OCRImage(BufferedImage ocrString) {
+        String result = null;
 
+        if (ocrString != null) {
+            Tesseract instance = Tesseract.getInstance();
+            instance.setDatapath("E:\\Final Year Project AI-ICBT2017\\Digital Archeological Newspaper System\\Tess4j");
+
+            try {
+
+                result = instance.doOCR(ocrString);
+
+            } catch (TesseractException e) {
+                System.err.println(e.getMessage());
+            }
+        } else {
+            result = "Please Select a File for OCR";
+        }
+        return result;
+    }
 
 }

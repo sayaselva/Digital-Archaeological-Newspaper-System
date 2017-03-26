@@ -80,10 +80,9 @@ public class SpaceSegment {
                 }
             }
             lastRow = deteted_line.get(i + 1);//lastRow+histoSegm.get(i).rows();
-            //System.out.println("lastrow "+lastRow);
+
         }
 
-        //Highgui.imwrite("histoSegment.jpg", histoSegm.get(2));
         System.out.println("************no of horizontal seg*************************" + histoSegm.size());
 
         return histoSegm;
@@ -142,9 +141,9 @@ public class SpaceSegment {
                 }
             }
             lastColumn = VerticalDeteted_line.get(i + 1);//lastRow+histoSegm.get(i).rows();
-            //System.out.println("lastColumn "+lastColumn);
+
         }
-        //Highgui.imwrite("VertihistoSegment.jpg", vertiHistoSegm.get(1));
+
         System.out.println("************no of vertical seg*************************" + vertiHistoSegm.size());
 
         return vertiHistoSegm;

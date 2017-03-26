@@ -1,5 +1,6 @@
 package digital.OCR;
 
+import digital.gui.HeadLine_Extraction;
 import digital.gui.MainGUI;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
@@ -23,6 +24,22 @@ import static org.opencv.imgproc.Imgproc.THRESH_BINARY;
 public class FEextract {
 
     private File selFolder;
+
+    public File SelectFolder(HeadLine_Extraction obj) {
+        final JFileChooser jfc;
+        jfc = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp");
+        File f = new File(System.getProperty("user.dir"));
+
+        jfc.setCurrentDirectory(f);
+        jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jfc.showOpenDialog(obj);
+        selFolder = jfc.getSelectedFile();
+
+        System.out.println("selected file " + selFolder);
+
+        return jfc.getSelectedFile();
+    }
 
     public void makeBinary(String img) {
         Mat image = Highgui.imread(img);

@@ -12,9 +12,11 @@ import java.io.IOException;
  * @author Sayanthini
  */
 public class Main {
-    
+
     public static void main(String[] args) throws IOException {
-      MainGUI obj =new MainGUI();
-      obj.show();
+        MainGUI obj = new MainGUI();
+        obj.show();
+
     }
+
 }

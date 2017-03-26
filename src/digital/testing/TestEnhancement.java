@@ -9,15 +9,14 @@ import digital.segmentation.Enhancement;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-
 /**
  *
- * @author john
+ * @author Sayanthini
  */
 public class TestEnhancement {
-    
+
     @Test
-    public void testAdd(){
+    public void testAdd() {
         Enhancement en = new Enhancement();
         System.out.println("Testing add...");
         int result = en.add(10, 20);

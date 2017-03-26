@@ -14,19 +14,19 @@ import static org.junit.Assert.assertEquals;
  * @author Sayanthini
  */
 public class TestSample1 {
-   
+
     @Test
-    public void testSum(){
-        int sum  = 7 + 3;
+    public void testSum() {
+        int sum = 7 + 3;
         System.out.println("Testing sum");
         assertEquals(10, sum);
     }
-    
+
     @Test
-    public void testMultiply(){
-        int mul = 6*7;
+    public void testMultiply() {
+        int mul = 6 * 7;
         System.out.println("Testing multiply");
         assertEquals(42, mul);
-           
+
     }
 }
