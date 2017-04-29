@@ -38,7 +38,6 @@ public class ParagraphAnalaze {
             if (vProjection[i] < 5 && start && vProjection[i - 1] != 0) {
                 histo_minima.add(i - 1);
             }
-
         }
         return histo_minima;
     }

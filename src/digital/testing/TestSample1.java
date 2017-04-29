@@ -29,4 +29,6 @@ public class TestSample1 {
         assertEquals(42, mul);
 
     }
+    
+    
 }

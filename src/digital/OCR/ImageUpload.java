@@ -45,10 +45,11 @@ public class ImageUpload {
 
         if (ocrString != null) {
             Tesseract instance = Tesseract.getInstance();
-            instance.setDatapath("E:\\Final Year Project AI-ICBT2017\\Digital Archeological Newspaper System\\Tess4j");
+            instance.setDatapath("E:\\Final Year Project AI-ICBT2017\\Digital Archeological Newspaper System\\src\\net\\sourceforge\\tess4j");
 
             try {
-
+                System.out.println("OCR Instance path " + ocrString);
+                System.out.println("instance" + instance);
                 result = instance.doOCR(ocrString);
 
             } catch (TesseractException e) {
